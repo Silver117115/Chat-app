@@ -12,15 +12,15 @@ const SignUp = () => {
     gender: "",
   });
 
-  const {loading, signup} = useSignup()
+  const { loading, signup } = useSignup();
 
   const handleCheckboxChange = (gender) => {
-    setInputs({...inputs,gender})
-  }
+    setInputs({ ...inputs, gender });
+  };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    await signup(inputs)
+    await signup(inputs);
   };
 
   return (
@@ -88,7 +88,10 @@ const SignUp = () => {
             />
           </div>
 
-          <GenderCheckBox onCheckboxChange = {handleCheckboxChange} selectedGender={inputs.gender}/>
+          <GenderCheckBox
+            onCheckboxChange={handleCheckboxChange}
+            selectedGender={inputs.gender}
+          />
 
           <Link
             className="text-sm hover:underline hover:text-blue-500 mt-2 inline-block"
@@ -98,9 +101,15 @@ const SignUp = () => {
           </Link>
 
           <div>
-            <button className="btn btn-block btn-sm mt-2 border border-slate-700">
+            <button
+              className="btn btn-block btn-sm mt-2 border border-slate-700"
               disabled={loading}
-              Sign Up
+            >
+              {loading ? (
+                <span className="loading loading-spinner"></span>
+              ) : (
+                "Sign Up"
+              )}
             </button>
           </div>
         </form>
